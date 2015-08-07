@@ -3,6 +3,27 @@
 
 #include "Definitions.h"
 
+typedef struct _current_assets
+{
+    dollars cash; 
+    dollars receivables; 
+    dollars inventory; 
+    dollars short_term_investments;
+    dollars prepaid_liabilities;
+}t_current_assets;
+
+typedef struct _noncurrent_assets
+{
+    dollars property_plant_equipment;
+    dollars goodwill;
+}t_noncurrent_assets;
+
+typedef struct _assets
+{
+    t_current_assets current;
+    t_noncurrent_assets noncurrent;
+}t_assets;
+
 
 class CurrentAssets
 {
@@ -13,7 +34,7 @@ class CurrentAssets
         dollars short_term_investments;
         dollars prepaid_liabilities;
     public:
-        CurrentAssets(dollars cash, dollars receivables, dollars inventory, dollars short_term_investments, dollars prepaid_liabilities);
+        CurrentAssets(t_current_assets& current_assets);
         dollars getCash();
         void setCash(dollars cash);
         dollars getReceivables();
@@ -33,7 +54,7 @@ class NonCurrentAssets
         dollars property_plant_equipment;
         dollars goodwill;
     public:
-        NonCurrentAssets(dollars property_plant_equipment, dollars goodwill);
+        NonCurrentAssets(t_noncurrent_assets& noncurrent_assets);
         dollars getPropertyPlantEquipment();
         void setPropertyPlantEquipment(dollars property_plant_equipment);
         dollars getGoodwill();
@@ -45,10 +66,10 @@ class Assets
 {
     private:
         dollars sum;
-        CurrentAssets current;
-        NonCurrentAssets noncurrent;
+        CurrentAssets* current;
+        NonCurrentAssets* noncurrent;
     public:
-        Assets(dollars cash, dollars receivables, dollars inventory, dollars short_term_investments, dollars prepaid_liabilities, dollars property_plant_equipment, dollars goodwill);
+        Assets(t_assets& assets);
         CurrentAssets getCurrent();
         NonCurrentAssets getNonCurrent();
         dollars getSum();

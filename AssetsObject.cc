@@ -1,82 +1,83 @@
 #include "AssetsObject.h"
 
-Assets::Assets(dollars cash, dollars receivables, dollars inventory, dollars short_term_investments, dollars prepaid_liabilities, dollars property_plant_equipment, dollars goodwill)
-    :current(cash, receivables, inventory, short_term_investments, prepaid_liabilities),
-    noncurrent(property_plant_equipment, goodwill)
+
+
+
+Assets::Assets(t_assets& assets)
 {
+    current = new CurrentAssets(assets.current);
+    noncurrent = new NonCurrentAssets(assets.noncurrent);
 }
 
 CurrentAssets Assets::getCurrent()
 {
-    return current;
+    return *current;
     
 }
 
 NonCurrentAssets Assets::getNonCurrent()
 {
-    return noncurrent;
+    return *noncurrent;
     
 }
 
 dollars Assets::getSum()
 {
-    return current.getSum() + noncurrent.getSum();
+    return current->getSum() + noncurrent->getSum();
     
 }
 
 void Assets::setCash(dollars cash)
 {
-    current.setCash(cash);
+    current->setCash(cash);
 }
 
 
 void Assets::setReceivables(dollars receivables)
 {
-    current.setReceivables(receivables);
+    current->setReceivables(receivables);
 }
 
 
 void Assets::setInventory(dollars inventory)
 {
-    current.setInventory(inventory);
+    current->setInventory(inventory);
     
 }
 
 void Assets::setShortTermInvestments(dollars short_term_investments)
 {
-    current.setShortTermInvestments(short_term_investments);
+    current->setShortTermInvestments(short_term_investments);
     
 }
 
 
 void Assets::setPrepaidLiabilities(dollars prepaid_liabilities)
 {
-    current.setPrepaidLiabilities(prepaid_liabilities);
+    current->setPrepaidLiabilities(prepaid_liabilities);
     
 }
 
 
 void Assets::setPropertyPlantEquipment(dollars property_plant_equipment)
 {
-    noncurrent.setPropertyPlantEquipment(property_plant_equipment);
+    noncurrent->setPropertyPlantEquipment(property_plant_equipment);
     
 }
 
 void Assets::setGoodwill(dollars goodwill)
 {
-    noncurrent.setGoodwill(goodwill);
+    noncurrent->setGoodwill(goodwill);
     
 }
         
         
-        
-        
-CurrentAssets::CurrentAssets(dollars cash, dollars receivables, dollars inventory, dollars short_term_investments, dollars prepaid_liabilities)
-    :cash(cash),
-    receivables(receivables),
-    inventory(inventory),
-    short_term_investments(short_term_investments),
-    prepaid_liabilities(prepaid_liabilities)
+CurrentAssets::CurrentAssets(t_current_assets& current_assets)
+    :cash(current_assets.cash),
+    receivables(current_assets.receivables),
+    inventory(current_assets.inventory),
+    short_term_investments(current_assets.short_term_investments),
+    prepaid_liabilities(current_assets.prepaid_liabilities)
 {
     
 }
@@ -148,9 +149,9 @@ dollars CurrentAssets::getSum()
 }
 
 
-NonCurrentAssets::NonCurrentAssets(dollars property_plant_equipment, dollars goodwill)
-    :property_plant_equipment(property_plant_equipment),
-    goodwill(goodwill)
+NonCurrentAssets::NonCurrentAssets(t_noncurrent_assets& noncurrent_assets)
+    :property_plant_equipment(noncurrent_assets.property_plant_equipment),
+    goodwill(noncurrent_assets.goodwill)
 {
     
 }

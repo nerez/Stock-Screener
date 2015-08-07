@@ -6,61 +6,76 @@ BalanceSheet::BalanceSheet(dollars cash, dollars receivables, dollars inventory,
                         dollars long_term_bank_loan, dollars long_term_other_loan, dollars bonds_and_debtures, dollars long_term_lease_obligations,
                         dollars capital_stock, dollars additional_paid_in_capital, dollars retained_earnings, shares number_of_shares, shares number_of_diluted_shares)
                         
-    :assets(cash, receivables, inventory, short_term_investments, prepaid_liabilities, property_plant_equipment, goodwill),
-    liabilities(accounts_payable, sales_tax_payable, payroll_tax_payable, income_tax_payable, customer_deposits, dividends_declared, short_term_loans, current_maturities_of_long_term_debt, 
+    :liabilities(accounts_payable, sales_tax_payable, payroll_tax_payable, income_tax_payable, customer_deposits, dividends_declared, short_term_loans, current_maturities_of_long_term_debt, 
                         long_term_bank_loan, long_term_other_loan, bonds_and_debtures, long_term_lease_obligations),
     equity(capital_stock, additional_paid_in_capital, retained_earnings, number_of_shares, number_of_diluted_shares)
 {
+    t_assets assets;
+    t_current_assets current_assets;
+    t_noncurrent_assets noncurrent_assets;
+    
+    current_assets.cash                         = cash;
+    current_assets.receivables                  = receivables;
+    current_assets.inventory                    = inventory;
+    current_assets.short_term_investments       = short_term_investments;
+    current_assets.prepaid_liabilities          = prepaid_liabilities;
+    assets.current = current_assets;
+    
+    noncurrent_assets.property_plant_equipment  = property_plant_equipment;
+    noncurrent_assets.goodwill                  = goodwill;
+    assets.noncurrent = noncurrent_assets;
+    
+    this->assets = new Assets(assets);  
     
 }
 
 Assets BalanceSheet::getAssets()
 {
-    return assets;
+    return *assets;
     
 }
 
 void BalanceSheet::setCash(dollars cash)
 {
-    assets.setCash(cash);
+    assets->setCash(cash);
 }
 
 
 void BalanceSheet::setReceivables(dollars receivables)
 {
-    assets.setReceivables(receivables);
+    assets->setReceivables(receivables);
 }
 
 
 void BalanceSheet::setInventory(dollars inventory)
 {
-    assets.setInventory(inventory);
+    assets->setInventory(inventory);
     
 }
 
 void BalanceSheet::setShortTermInvestments(dollars short_term_investments)
 {
-    assets.setShortTermInvestments(short_term_investments);
+    assets->setShortTermInvestments(short_term_investments);
     
 }
 
 
 void BalanceSheet::setPrepaidLiabilities(dollars prepaid_liabilities)
 {
-    assets.setPrepaidLiabilities(prepaid_liabilities);
+    assets->setPrepaidLiabilities(prepaid_liabilities);
     
 }
 
 
 void BalanceSheet::setPropertyPlantEquipment(dollars property_plant_equipment)
 {
-    assets.setPropertyPlantEquipment(property_plant_equipment);
+    assets->setPropertyPlantEquipment(property_plant_equipment);
     
 }
 
 void BalanceSheet::setGoodwill(dollars goodwill)
 {
-    assets.setGoodwill(goodwill);
+    assets->setGoodwill(goodwill);
     
 }
 

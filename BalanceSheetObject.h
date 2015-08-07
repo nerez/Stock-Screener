@@ -8,7 +8,7 @@
 class BalanceSheet
 {
     private:
-        Assets assets;
+        Assets* assets;
         Liabilities liabilities;
         Equity equity;
     

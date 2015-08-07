@@ -1,7 +1,7 @@
 #ifndef STOCKOBJECT_H
 #define STOCKOBJECT_H
 
-#include<ctime>
+#include <ctime>
 #include "Definitions.h"
 #include "BalanceSheetObject.h"
 
