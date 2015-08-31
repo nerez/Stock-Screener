@@ -56,7 +56,6 @@ class Term
 };
 
 
-//TODO Create objects for 'year' and 'term'
 class BalanceSheetMap
 {
     private:

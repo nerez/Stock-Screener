@@ -53,8 +53,8 @@ void Stock::AddBalanceSheet(t_balancesheet balancesheet)
 }
 
 
-//TODO get BalanceSheet by Term (2015 Q1)
-BalanceSheet Stock::getBalanceSheet()
+//TODO get BalanceSheet by Term  and year(2015 Q1)
+BalanceSheet Stock::getBalanceSheet(Year y, Term t)
 {
     return v_balancesheet.front();
     
